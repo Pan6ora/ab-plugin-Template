@@ -7,6 +7,8 @@ class Plugin(ab.Plugin):
 
     def __init__(self):
         ab.Plugin.__init__(self, infos)
+
+    def load(self):
         self.rightTab = RightTab(self)
         self.leftTab = LeftTab(self)
         self.tabs = [self.rightTab, self.leftTab]
