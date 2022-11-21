@@ -6,41 +6,95 @@
 
 # Activity Browser
 
-The activity browser is an open source software for Life Cycle Assessment (LCA) that builds on top of the Brightway2 LCA framework.
+[The activity browser](https://github.com/LCA-ActivityBrowser/activity-browser) is an open source software for Life Cycle Assessment (LCA) that builds on top of the [Brightway2](https://brightway.dev) LCA framework.
 
-Rémy Le Calloch <remy@lecalloch.net> has been working for the G-SCOP laboratory on a plugin manager to add functionalities to Activity-Browser. This repository is a template of plugin that can serve as an example to create new ones.
+I have been working lastly on a plugin system to add functionnalities to it on-the-fly (see the [fork](https://github.com/Pan6ora/activity-browser) on github).
+
+This repository is a basic plugin that does nothing but can serve as an example to create new ones.
 
 # QuickStart
 
-Setup a dev environment and get the modified version of Activity Browser. You will need to have python3 and conda installed (as some dependencies are not on pip).
+This section will let you get the modified version of Activity Browser and add the template plugin that works as a demo.
 
-```
-conda create -n local_dev -c conda-forge -c cmutel -c bsteubing activity-browser-dev
-conda activate local_dev
-conda remove --force activity-browser-dev
-```
+## Get Activity Browser with plugins 
 
-This create a conda environment named local_dev with all Activity Browser packages, then remove the package activity-browser itself (as we are going to launch it directly from the content of this repository).
+See instructions in [Activity Browser README](https://github.com/Pan6ora/activity-browser).
 
-To start Activity Browser clone the repo, switch to conda environment and run run-activity-browser.py in the plugin-manager branch.
+## Add the template plugin
 
-```
-git clone git@github.com:Pan6ora/activity-browser.git
-git checkout plugin-manager
-conda activate local_dev
-python activity-browser/run-activity-browser.py
-```
+Use the _Import_ button in the **Plugins** section on the left panel. Select the file `template.plugin` from this repository.
 
-Activity Browser should start. A button _Import_ in the plugin section will let you import your plugin. After that two empty tabs named "Template" should appear.
+After the import is completed you should now see 2 new tabs (one on each panel) named _Template_.
+
+Well done ! You have imported your first plugin.
+
+See the next section to create your own.
 
 # Creating a plugin
 
 If everything works you can start adding real code into the plugin.
 
-An example that may help you is the [plugin ReSICLED](https://espaces-collaboratifs.grenet.fr/share/s/2WXIRzOyQX6rPBc1g8peJw) created and maintained at G-SCOP laboratory. You can add it to Activity Browser to see how it works, then look at the code to help you create your own plugin.
+Put your code in the `plugin` folder. We encourage you to follow th Activity Browser files tree structure and guidelines.
 
-A good idea to test as you are adding stuff may be to replace the `plugin/Template` folder in the Brightway project folder by a link to the folder you are coding into. Thus you will only have to restart Activity Browser to see your changes without importing the plugin over and over again.
+## What you can do
 
-To create the plugin itself simply create a 7z archive of the code and rename it to your_plugin.plugin.
+- adding content in the two tabs (sub-tabs, text, graphics...)
+- adding wizards
+- importing databases
+- put stuff in the project folder
+- connect to Activity Browser signals and generate them
+
+## What you can't do
+
+- modifying other tabs or GUI parts
+
+## Hooks
+
+In the main plugin class (defined in `__init__.py`) there is three methods:
+
+**load** is run each time the plugin is imported or reloaded. It replaces the init method. Add your init content their and not in \__init__ .
+
+**initialize** is run once at plugin import. Use it for example to import databases to the current project that your plugin will use.
+
+**remove** is run once at plugin removal. Use it to clean the place (for example removing databases you had previously imported).
+
+## Metadata
+
+The `metadata.py` file contains the plugin description. Don't forget to change it by your own !
+
+## Coding "in place"
+
+When developing a plugin it is painful to import it every time you want to test your work (don't forget to test the import tho).
+
+To avoid doing so you could replace the plugin code in your Brightway project by a link to your development folder.
+
+After that you will only have to restart Activity Browser to see your changes without importing the plugin over and over again.
+
+**on Linux**
+
+The project path should be something like `$HOME/.local/share/Brightway3`. 
+
+Creating the link should look like:
+
+```
+rm -rf $HOME/.local/share/BrightwayX/default.xxxx/plugins/*
+ln -rs ./ $HOME/.local/share/BrightwayX/default.xxxx/plugins/Template
+```
+
+**on windows**
+
+The project path should be something like `C:\users\<user>\AppData\Local\pylca\BrightwayX`.
+
+Delete the `\default.xxx\plugins\Template` folder and replace it by a link to your development folder.
+
+**on OSX**
+
+The project path should be something like `/Users/<User>/Library/Application Support/Brightway2`.
+
+Delete the `\default.xxx\plugins\Template` folder and replace it by a link to your development folder.
+
+## Creating the plugin file
+
+To create the plugin itself simply create a 7z archive of the code and rename it to `your_plugin.plugin`.
 
 
