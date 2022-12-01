@@ -13,8 +13,11 @@ class Plugin(ab.Plugin):
         self.leftTab = LeftTab(self)
         self.tabs = [self.rightTab, self.leftTab]
 
-    def initialize(self):
+    def close(self):
         return
 
     def remove(self):
+        return
+
+    def delete(self):
         return
