@@ -50,13 +50,12 @@ Put your code in the `plugin` folder. We encourage you to follow th Activity Bro
 
 ## Hooks
 
-In the main plugin class (defined in `__init__.py`) there is three methods:
+The plugin class has 4 methods that are run by AB at a certain point :
 
-**load** is run each time the plugin is imported or reloaded. It replaces the init method. Add your init content their and not in \__init__ .
-
-**initialize** is run once at plugin import. Use it for example to import databases to the current project that your plugin will use.
-
-**remove** is run once at plugin removal. Use it to clean the place (for example removing databases you had previously imported).
+- `load()` is run each time the plugin is added tp the project or reloaded. It kind of replaces the init method.
+- `close()` is run when AB get closed.Put there the code to end your plugin properly.
+- `remove()` is run when the plugin is removed from the current project. Use it to clean the place.
+- `delete()` is run when the plugin is fully removed from AB.
 
 ## Metadata
 
