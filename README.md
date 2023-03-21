@@ -1,20 +1,20 @@
-# Plugin name
+# Activity Browser plugin : Template
 
-[One line description]
+An empty plugin to start from
 
-[Multiline description]
+This repos build an empty Activity Browser template available through conda. 
+It is meant to be the starting point for creating new plugins.
 
-# Activity Browser
+## Activity Browser
 
 [The activity browser](https://github.com/LCA-ActivityBrowser/activity-browser) is an open source software for Life Cycle Assessment (LCA) that builds on top of the [Brightway2](https://brightway.dev) LCA framework.
 
-I have been working lastly on a plugin system to add functionnalities to it on-the-fly (see the [fork](https://github.com/Pan6ora/activity-browser) on github).
-
-This repository is a basic plugin that does nothing but can serve as an example to create new ones.
+The plugin system is currently not available on the main Activity Browser version.
+See [Quickstart](#QuickStart) for how to get it.
 
 # QuickStart
 
-This section will let you get the modified version of Activity Browser and add the template plugin that works as a demo.
+This section will let you get the modified version of Activity Browser and add the template plugin.
 
 ## Get Activity Browser with plugins 
 
@@ -22,19 +22,23 @@ See instructions in [Activity Browser README](https://github.com/Pan6ora/activit
 
 ## Add the template plugin
 
-Use the _Import_ button in the **Plugins** section on the left panel. Select the file `template.plugin` from this repository.
+- install the plugin with conda :
 
-After the import is completed you should now see 2 new tabs (one on each panel) named _Template_.
+```
+conda install -c pan6ora ab-plugin-template
+```
 
-Well done ! You have imported your first plugin.
+- start Activity Browser
+- Open the menu `Tools > Plugins`
+- Select the plugin and click "Save"
 
-See the next section to create your own.
+A new tab called "Template" should appear in the right panel.
 
 # Creating a plugin
 
 If everything works you can start adding real code into the plugin.
 
-Put your code in the `plugin` folder. We encourage you to follow th Activity Browser files tree structure and guidelines.
+We encourage you to follow th Activity Browser files tree structure and guidelines.
 
 ## What you can do
 
@@ -56,10 +60,6 @@ The plugin class has 4 methods that are run by AB at a certain point :
 - `close()` is run when AB get closed.Put there the code to end your plugin properly.
 - `remove()` is run when the plugin is removed from the current project. Use it to clean the place.
 - `delete()` is run when the plugin is fully removed from AB.
-
-## Metadata
-
-The `metadata.py` file contains the plugin description. Don't forget to change it by your own !
 
 ## Coding "in place"
 
@@ -91,9 +91,4 @@ Delete the `\default.xxx\plugins\Template` folder and replace it by a link to yo
 The project path should be something like `/Users/<User>/Library/Application Support/Brightway2`.
 
 Delete the `\default.xxx\plugins\Template` folder and replace it by a link to your development folder.
-
-## Creating the plugin file
-
-To create the plugin itself simply create a 7z archive of the code and rename it to `your_plugin.plugin`.
-
 

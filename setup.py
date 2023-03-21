@@ -2,7 +2,7 @@
 import os
 from setuptools import setup
 
-from .metadata import *
+NAME = "ab-plugin-template"
 
 packages = []
 root_dir = os.path.dirname(__file__)
@@ -10,7 +10,7 @@ if root_dir:
     os.chdir(root_dir)
 accepted_filetypes = (".html", ".png", ".svg", ".js", ".css")
 
-for dirpath, dirnames, filenames in os.walk('plugin'):
+for dirpath, dirnames, filenames in os.walk(NAME):
     # Ignore dirnames that start with '.'
     if ('__init__.py' in filenames
             or any(x.endswith(accepted_filetypes) for x in filenames)):
@@ -19,17 +19,20 @@ for dirpath, dirnames, filenames in os.walk('plugin'):
             pkg = pkg.replace(os.path.altsep, '.')
         packages.append(pkg)
 
+if 'VERSION' in os.environ:
+    version = os.environ['VERSION']
+else:
+    version = os.environ.get('GIT_DESCRIBE_TAG', '0.0.0')
+
 setup(
-    name=name,
+    name=NAME,
     version=version,
     packages=packages,
     include_package_data=True,
-    author=author,
-    author_email=author_email,
+    author="Rémy Le Calloch",
+    author_email="remy@lecalloch.net",
     license=open('LICENSE.txt').read(),
     install_requires=[], # dependency management in conda recipe
-    url=url,
+    url="https://github.com/Pan6ora/activity-browser-plugin-template",
     long_description=open('README.md').read(),
-    description=description,
-    classifiers=classifiers,
-    )
+    description="An empty plugin to start from",
