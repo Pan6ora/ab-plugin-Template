@@ -36,3 +36,4 @@ setup(
     url="https://github.com/Pan6ora/activity-browser-plugin-template",
     long_description=open('README.md').read(),
     description="An empty plugin to start from",
+    )
