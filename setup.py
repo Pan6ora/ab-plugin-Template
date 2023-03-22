@@ -2,15 +2,13 @@
 import os
 from setuptools import setup
 
-NAME = "ab-plugin-template"
-
 packages = []
 root_dir = os.path.dirname(__file__)
 if root_dir:
     os.chdir(root_dir)
 accepted_filetypes = (".html", ".png", ".svg", ".js", ".css")
 
-for dirpath, dirnames, filenames in os.walk(NAME):
+for dirpath, dirnames, filenames in os.walk("ab_plugin_template"):
     # Ignore dirnames that start with '.'
     if ('__init__.py' in filenames
             or any(x.endswith(accepted_filetypes) for x in filenames)):
@@ -25,7 +23,7 @@ else:
     version = os.environ.get('GIT_DESCRIBE_TAG', '0.0.0')
 
 setup(
-    name=NAME,
+    name="ab-plugin-template",
     version=version,
     packages=packages,
     include_package_data=True,
