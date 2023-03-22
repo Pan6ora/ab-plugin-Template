@@ -1,11 +1,13 @@
 import activity_browser as ab
 
 from .layouts.tabs import LeftTab, RightTab
-from .metadata import infos
 
 class Plugin(ab.Plugin):
 
     def __init__(self):
+        infos = {
+            'name': "Template",
+        }
         ab.Plugin.__init__(self, infos)
 
     def load(self):
@@ -17,7 +19,4 @@ class Plugin(ab.Plugin):
         return
 
     def remove(self):
-        return
-
-    def delete(self):
         return

@@ -1,6 +1,6 @@
 # Activity Browser plugin : Template
 
-An empty plugin to start from
+An empty plugin to start from.
 
 This repos build an empty Activity Browser template available through conda. 
 It is meant to be the starting point for creating new plugins.
@@ -20,7 +20,7 @@ This section will let you get the modified version of Activity Browser and add t
 
 See instructions in [Activity Browser README](https://github.com/Pan6ora/activity-browser).
 
-## Add the template plugin
+## Get this plugin
 
 - install the plugin with conda :
 
@@ -29,10 +29,7 @@ conda install -c pan6ora ab-plugin-template
 ```
 
 - start Activity Browser
-- Open the menu `Tools > Plugins`
-- Select the plugin and click "Save"
-
-A new tab called "Template" should appear in the right panel.
+- Select the plugin in plugins list
 
 # Creating a plugin
 
