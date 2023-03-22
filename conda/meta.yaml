@@ -16,7 +16,7 @@ requirements:
     - setuptools
     - conda-verify
   run:
-    - activity-browser
+    - python >=3.8,<3.10
 
 about:
   home: https://github.com/Pan6ora/activity-browser-plugin-template
