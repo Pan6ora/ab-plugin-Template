@@ -1,0 +1,8 @@
+name: build
+channels:
+  - pan6ora
+  - conda-forge
+dependencies:
+  - conda-build
+  - anaconda-client
+  - conda-verify
