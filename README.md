@@ -9,20 +9,10 @@ It is meant to be the starting point for creating new plugins.
 
 [The activity browser](https://github.com/LCA-ActivityBrowser/activity-browser) is an open source software for Life Cycle Assessment (LCA) that builds on top of the [Brightway2](https://brightway.dev) LCA framework.
 
-The plugin system is currently not available on the main Activity Browser version.
-See [Quickstart](#QuickStart) for how to get it.
+## Test this plugin
 
-# QuickStart
-
-This section will let you get the modified version of Activity Browser and add the template plugin.
-
-## Get Activity Browser with plugins 
-
-See instructions in [Activity Browser README](https://github.com/Pan6ora/activity-browser).
-
-## Get this plugin
-
-- install the plugin with conda :
+- activate your Activity Browser conda environment
+- install this plugin with conda :
 
 ```
 conda install -c pan6ora ab-plugin-template
@@ -33,51 +23,74 @@ conda install -c pan6ora ab-plugin-template
 
 # Creating a plugin
 
-If everything works you can start adding real code into the plugin.
+This document will guide you through the process of creating a plugin for Activity Browser.
 
-We encourage you to follow th Activity Browser files tree structure and guidelines.
+## 1. Setup the repository
 
-## What you can do
+- Go to [this repository main page](https://github.com/Pan6ora/ab-plugin-Template) and click on `Use this template`
+- Give your project a name (ideally something like `ab-plugin-MyPlugin`)
+- Check the `Include all branches` box
+- Create the repository
 
-- adding content in the two tabs (sub-tabs, text, graphics...)
-- adding wizards
-- importing databases
-- put stuff in the project folder
-- connect to Activity Browser signals and generate them
+The template contains 2 branches:
+- `main` which is a real plugin named Template and contains this documentation
+- `template` which is the branch to be completed with your project infos
 
-## What you can't do
-
-- modifying other tabs or GUI parts
-
-## Hooks
-
-The plugin class has 4 methods that are run by AB at a certain point :
-
-- `load()` is run each time the plugin is added tp the project or reloaded. It kind of replaces the init method.
-- `close()` is run when AB get closed.Put there the code to end your plugin properly.
-- `remove()` is run when the plugin is removed from the current project. Use it to clean the place.
-- `delete()` is run when the plugin is fully removed from AB.
-
-## Coding "in place"
-
-When developing a plugin it is painful to import it every time you want to test your work (don't forget to test the import tho).
-
-To avoid doing so you could replace the plugin code in your Brightway project by a link to your development folder.
-
-After that you will only have to restart Activity Browser to see your changes without importing the plugin over and over again.
-
-**on Linux**
-
-The project path should be something like `$HOME/.local/share/Brightway3`. 
-
-Creating the link should look like:
+After cloning your repository you need to set it up to start from the `template` branch. This can be done with the following git commands:
 
 ```
-rm -rf $HOME/.local/share/BrightwayX/default.xxxx/plugins/*
-ln -rs ./ $HOME/.local/share/BrightwayX/default.xxxx/plugins/Template
+git checkout main
+git reset --hard template
+git push -f
+git branch -d template
+git push origin --delete template
 ```
 
-**on windows**
+You should now have only one branch called `main` and containing the content of the old branch `template`
+
+## 2. Add your plugin infos
+
+The repository already contains some files to get you started:
+
+- `.github` and `ci` folders to deploy your plugin to Anaconda
+- `ab_plugin_plugin_name` contains the plugin code
+- `setup.py` file to create a python package
+- basic CHANGELOG, LICENSE and README
+
+Before starting to add functionalities to the plugin we need to fill some metadata.
+
+### 2.1. Plugin infos
+
+Some keywords need to be changed in multiple files. The best way of doing that might be using a Search & Replace functionality in the project folder. These are keywords to change:
+
+- `plugin_name` (4 results in 3 files)
+- `one_line_description` (3 results in 2 files)
+- `plugin_url`: replace by github url (3 results in 2 files)
+- `plugin_author_email` (1 result in setup.py)
+- `plugin_author` (1 result in setup.py)
+
+The name of the code folder also needs to be changed with your plugin name.
+
+### 2.2. Deploy to Anaconda
+
+In case you want to make your plugin available on the Anaconda packages repository you will need to set the appropriate repository secret on Github.
+
+- Get an Anaconda token (with read and write API access) at anaconda.org/USERNAME/settings/access
+- Add it to the Secrets of the Github repository as `CONDA_UPLOAD_TOKEN`
+
+More infos about Anaconda deployment later.
+
+### 2.3. Test
+
+Your plugin should be ready for a test !
+
+Open a terminal in your conda environment and install your plugin in development mode with pip:
+
+```
+pip install -e .
+```
+
+Then start activity-browser and go to `Tools>Plugins` menu. Your plugin should appear in the list. Activate it and close the window. Two tabs should appear with your plugin name.
 
 The project path should be something like `C:\users\<user>\AppData\Local\pylca\BrightwayX`.
 
