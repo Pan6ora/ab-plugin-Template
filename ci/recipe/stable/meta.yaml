@@ -17,7 +17,7 @@ requirements:
     - setuptools
     - conda-verify
   run:
-    - activity-browser =2.7
+    - activity-browser =2.8
 
 about:
   home: plugin_url
