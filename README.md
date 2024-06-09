@@ -2,20 +2,29 @@
 
 An empty plugin to start from.
 
-This repo contains the documentation to create Activity Browser plugins. It also build an empty Activity Browser plugin available on Anaconda. 
+This repo contains the documentation to create Activity Browser plugins. It also build an empty Activity Browser plugin available on Anaconda.
 
 # Content
 
+- [Activity Browser plugin : Template](#activity-browser-plugin--template)
+- [Content](#content)
 - [Activity Browser](#activity-browser)
 - [Test this plugin](#test-this-plugin)
 - [Creating a plugin](#creating-a-plugin)
-    - [Creating the repository](#creating-the-repository)
-    - [Adding metadata](#adding-metadata)
-        - [Plugin infos](#plugin-infos)
-        - [Deploy to anaconda](#deploy-to-anaconda)
-    - [Testing](#testing)
+  - [Creating the repository](#creating-the-repository)
+  - [Adding metadata](#adding-metadata)
+    - [Plugin infos](#plugin-infos)
+    - [Deploy to Anaconda](#deploy-to-anaconda)
+  - [Testing](#testing)
+  - [Adding content](#adding-content)
 - [Plugin system documentation](#plugin-system-documentation)
+  - [Main characteristics](#main-characteristics)
+  - [What a plugin can do](#what-a-plugin-can-do)
+  - [What a plugin can't do](#what-a-plugin-cant-do)
+  - [Plugin content](#plugin-content)
+    - [Storage](#storage)
 - [Guidelines](#guidelines)
+  - [Hooks](#hooks)
 
 # Activity Browser
 
@@ -47,6 +56,7 @@ This document will guide you through the process of creating a plugin for Activi
 Once the repository is created you should clone it locally.
 
 The repo should contain 2 branches:
+
 - `main` which is a real plugin named Template and contains this documentation
 - `template` which is the branch to be completed with your project infos
 
@@ -85,6 +95,8 @@ Some keywords need to be changed in multiple files. The best way to doing that m
 
 The name of the code folder also needs to be changed with your plugin name.
 
+**Important:** the conda package name must be `ab-plugin-XXX` so that it can be detected by activity-browser.
+
 ### Deploy to Anaconda
 
 In case you want to make your plugin available on the Anaconda repository you will need to set the appropriate repository secret on Github.
@@ -94,7 +106,7 @@ In case you want to make your plugin available on the Anaconda repository you wi
 
 More infos about Anaconda deployment later.
 
-## Testing 
+## Testing
 
 A simple way to test your plugin is to use pip.
 
@@ -187,8 +199,6 @@ To keep track of plugins used in a project, an entry is added to project setting
 **Follow Activity Browser way of doing things**
 
 We encourage you to follow th Activity Browser files tree structure and guidelines. This will help people working with it to understand your code.
-
-
 
 ## Hooks
 
